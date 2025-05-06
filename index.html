@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slideshow Demo - Sports App</title>
+    <link rel="stylesheet" href="index_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <header class="main-header anim-slide-down">
+            <h1 class="main-title">DEMO</h1>
+        </header>
+
+        <nav class="menu-grid">
+            <a href="/demo1.html" class="menu-item menu-item-play anim-slide-up">
+                <div class="icon-container">
+                    <!-- MODIFIED SVG Colors for Badminton Racket and Shuttlecock -->
+                    <svg class="badminton-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <g id="shuttlecock-shape">
+                                <!-- Shuttlecock: Bright yellow tip, white feathers -->
+                                <path d="M0,0 Q5,-10 10,0 L10,10 Q5,15 0,10Z" fill="#FFD700"/> <!-- Gold/Yellow -->
+                                <line x1="5" y1="0" x2="5" y2="-15" stroke="#FFFFFF" stroke-width="1.2"/>
+                                <line x1="2" y1="-2" x2="2" y2="-13" stroke="#FFFFFF" stroke-width="1"/>
+                                <line x1="8" y1="-2" x2="8" y2="-13" stroke="#FFFFFF" stroke-width="1"/>
+                            </g>
+                        </defs>
+                        <g id="racket-anim">
+                            <!-- Racket: Bright blue handle, cyan head, light grey strings -->
+                            <rect x="40" y="75" width="8" height="25" rx="2" fill="#2563EB"/> <!-- Bright Blue -->
+                            <ellipse cx="44" cy="50" rx="20" ry="30" fill="none" stroke="#06B6D4" stroke-width="3.5"/> <!-- Cyan -->
+                            <line x1="29" y1="50" x2="59" y2="50" stroke="#E5E7EB" stroke-width="1.2"/> <!-- Light Grey -->
+                            <line x1="33" y1="35" x2="55" y2="65" stroke="#E5E7EB" stroke-width="1.2"/>
+                            <line x1="33" y1="65" x2="55" y2="35" stroke="#E5E7EB" stroke-width="1.2"/>
+                            <line x1="44" y1="22" x2="44" y2="78" stroke="#E5E7EB" stroke-width="1.2"/>
+                        </g>
+                        <g id="shuttle-anim" transform="translate(70 50) scale(1.2)">
+                             <use href="#shuttlecock-shape"/>
+                        </g>
+                    </svg>
+                </div>
+                <span class="menu-text">Play</span>
+            </a>
+
+            <a href="#slide-options" class="menu-item anim-slide-up">
+                <div class="icon-container">
+                    <!-- Consider replacing emoji with simple vector shapes or SVG icons later -->
+                    <div class="placeholder-icon">⚙️</div>
+                </div>
+                <span class="menu-text">Under Construction</span>
+            </a>
+
+            <a href="#slide-scores" class="menu-item anim-slide-up">
+                <div class="icon-container">
+                    <div class="placeholder-icon">⚙️</div>
+                </div>
+                <span class="menu-text">Under Construction</span>
+            </a>
+
+            <a href="#slide-about" class="menu-item anim-slide-up">
+                <div class="icon-container">
+                    <div class="placeholder-icon">⚙️</div>
+                </div>
+                <span class="menu-text">Under Construction</span>
+            </a>
+        </nav>
+    </div>
+
+</body>
+</html>

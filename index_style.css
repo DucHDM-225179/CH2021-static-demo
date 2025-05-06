@@ -1,0 +1,302 @@
+/* Basic Reset & Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --- Color Palette (Inspired by Space Bird & Vibrant Cartoon Style) --- */
+:root {
+    --bg-color: #8EE0FC; /* Light, vibrant sky blue fallback */
+    --primary-accent: #FF6B6B; /* Vibrant Coral/Red */
+    --secondary-accent: #FFD166; /* Bright Yellow */
+    --neutral-light: #F7FAFC; /* Very light grey / off-white */
+    --neutral-medium: #A0AEC0; /* Medium Grey */
+    --neutral-dark: #2D3748; /* Dark Slate Grey */
+    --text-color-dark: #1A202C; /* Very Dark Grey/Black */
+    --text-color-light: #FFFFFF;
+
+    --box-bg: rgba(255, 255, 255, 0.9); /* Semi-transparent white for boxes */
+    --box-border: var(--neutral-dark);
+    --box-shadow-color: rgba(45, 55, 72, 0.15);
+    --box-hover-border: var(--primary-accent);
+
+    /* Specific to track if not covered by SVG */
+    --track-grass: #59C88B;
+    --track-color: #F2785C;
+}
+
+body {
+    font-family: 'Montserrat', 'Exo 2', sans-serif;
+    font-weight: 700; /* Bolder default for this style */
+    /* MODIFIED: New background SVG */
+    background-image: url('track_field_background.svg');
+    background-color: var(--bg-color); /* Fallback */
+    background-size: cover;
+    background-position: center center; /* Show more of the track */
+    background-repeat: no-repeat;
+    color: var(--text-color-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    overflow: hidden;
+}
+
+/* --- Dimming Layer for Background --- */
+body::before {
+    content: "";
+    position: fixed; /* Cover the entire viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.12); /* Semi-transparent dark layer - adjust opacity (0.12 = 12%) */
+    z-index: 5; /* Position it above the body's background but below the main content */
+    pointer-events: none; /* Allows clicks to pass through to elements behind it (if any were interactive) */
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+    position: relative; /* For potential layering if needed */
+    z-index: 10; /* Ensure content is above full-screen background elements */
+}
+
+/* --- Entry Animations --- */
+@keyframes slideDownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-80px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUpFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(80px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.anim-slide-down {
+    opacity: 0; /* Start hidden */
+    animation: slideDownFadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
+    /* animation-name, duration, easing, delay, fill-mode */
+}
+
+.anim-slide-up {
+    opacity: 0; /* Start hidden */
+    animation: slideUpFadeIn 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.menu-item.anim-slide-up:nth-child(1) { animation-delay: 0.5s; }
+.menu-item.anim-slide-up:nth-child(2) { animation-delay: 0.6s; }
+.menu-item.anim-slide-up:nth-child(3) { animation-delay: 0.7s; }
+.menu-item.anim-slide-up:nth-child(4) { animation-delay: 0.8s; }
+.menu-item.anim-slide-up:nth-child(5) { animation-delay: 0.9s; }
+
+
+/* Main Title Styles - Kurzgesagt Inspired */
+.main-header {
+    margin-bottom: 50px;
+    padding: 20px 30px;
+    background-color: var(--box-bg);
+    border-radius: 20px; /* Slightly less round for a cleaner look */
+    border: 4px solid var(--box-border);
+    box-shadow: 0 5px 0px 0px var(--box-border); /* Flat, offset shadow for cartoon depth */
+    position: relative; /* For potential pseudo-elements if needed */
+}
+
+.main-title {
+    font-size: clamp(2.5rem, 7vw, 4.5rem); /* Slightly smaller for balance */
+    font-weight: 800; /* Extra bold */
+    color: var(--primary-accent);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 0px var(--text-color-light), /* White outline effect */
+                 -1px -1px 0px var(--text-color-light),
+                 1px -1px 0px var(--text-color-light),
+                 -1px 1px 0px var(--text-color-light);
+    /* Alternative: solid color - text-shadow: none; */
+}
+
+/* Menu Grid Styles - Kurzgesagt Inspired Items */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* Min item width */
+    gap: 30px; /* More spacing */
+}
+
+.menu-item {
+    background-color: var(--box-bg);
+    border: 3px solid var(--box-border);
+    border-radius: 12px; /* Cleaner, less rounded */
+    padding: 20px 15px;
+    text-decoration: none;
+    color: var(--text-color-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center content vertically */
+    min-height: 180px;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease-out;
+    box-shadow: 0 4px 0px 0px var(--box-border); /* Flat shadow */
+    position: relative; /* For hover effect */
+}
+
+.menu-item:hover {
+    transform: translateY(-4px) scale(1.02);
+    border-color: var(--box-hover-border);
+    box-shadow: 0 6px 0px 0px var(--box-hover-border); /* Shadow changes color with border */
+}
+
+.icon-container {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.badminton-icon { /* Colors are now set in HTML SVG */
+    width: 100%;
+    height: 100%;
+}
+
+.menu-text {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-color-dark);
+    margin-top: auto; /* Push text to bottom if icon container allows space */
+    padding-top: 5px; /* Small space above text */
+}
+
+.placeholder-icon {
+    font-size: 45px;
+    /* Making emojis blend a bit better, but custom SVGs are ideal */
+    opacity: 0.75;
+    filter: saturate(0.8);
+}
+
+
+/* Badminton Animation (remains largely the same, colors updated in SVG) */
+#racket-anim {
+    transform-origin: 44px 90px;
+    transition: transform 0.3s ease-out;
+}
+
+#shuttle-anim {
+    transition: transform 0.3s ease-out;
+}
+
+.menu-item-play:hover #racket-anim {
+    animation: hit-racket 0.6s ease-in-out 1 forwards;
+}
+
+.menu-item-play:hover #shuttle-anim {
+    animation: hit-shuttle 0.6s ease-in-out 1 forwards;
+}
+
+/* --- New Cartoon Badminton Animation --- */
+
+/* Racket Animation: Snappy, exaggerated swing */
+@keyframes hit-racket-cartoon {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    15% { /* Slight anticipation - lift up */
+        transform: rotate(10deg) scale(1.03);
+    }
+    40% { /* Fast, full backswing - slightly squashes */
+        transform: rotate(-35deg) scaleX(1) scaleY(0.95);
+    }
+    58% { /* WHIP! Forward for impact - stretches */
+        transform: rotate(45deg) scaleX(0.9) scaleY(1.15);
+    }
+    75% { /* Follow through */
+        transform: rotate(30deg) scale(1);
+    }
+    100% { /* Settle into final pose */
+        transform: rotate(35deg) scale(1);
+    }
+}
+
+/* Shuttlecock Animation: Impact with squash & stretch, fast exit */
+@keyframes hit-shuttle-cartoon {
+    0%, 57% { /* Shuttle waits at its 'ready' position (matches SVG transform) */
+        transform: translate(70px, 50px) scale(1.2) rotate(0deg);
+        opacity: 1;
+    }
+    58% { /* IMPACT - Shuttle gets squashed by the racket */
+        /* Racket head visually hits around (44,50) when rotated */
+        /* Shuttle moves slightly to meet, squashes */
+        transform: translate(48px, 48px) scale(1.2) scaleX(1.5) scaleY(0.7) rotate(20deg);
+        /* Base scale(1.2) then modified by X and Y */
+        opacity: 1;
+    }
+    60% { /* STRETCH & LAUNCH - Recoils and stretches out */
+        transform: translate(42px, 40px) scale(1.2) scaleX(0.6) scaleY(1.7) rotate(-30deg);
+        opacity: 1;
+    }
+    75% { /* Flying fast, slightly normalizing scale */
+        transform: translate(-20px, -10px) scale(1.1) rotate(-75deg);
+        opacity: 0.9;
+    }
+    100% { /* Gone - smaller and further off-screen */
+        transform: translate(-200px, -90px) scale(0.3) rotate(-120deg);
+        opacity: 0;
+    }
+}
+
+/* Apply the new cartoon animations on hover */
+.menu-item-play:hover #racket-anim {
+    /* Using a cubic-bezier for a "back-then-forward" exaggerated feel */
+    animation: hit-racket-cartoon 0.55s cubic-bezier(0.68, -0.55, 0.26, 1.55) 1 forwards;
+}
+
+.menu-item-play:hover #shuttle-anim {
+    /* A sharp ease-out for the shuttle's launch */
+    animation: hit-shuttle-cartoon 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1 forwards;
+}
+
+/* Keep the base transitions for when hover ends (or for non-animated state) */
+#racket-anim {
+    transform-origin: 44px 90px; /* Pivot from base of handle */
+    transition: transform 0.3s ease-out;
+}
+
+#shuttle-anim {
+    transition: transform 0.3s ease-out;
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .main-header { margin-bottom: 40px; padding: 15px 25px; border-radius: 16px;}
+    .main-title { font-size: clamp(2.2rem, 6vw, 3.8rem); }
+    .menu-grid { gap: 20px; }
+    .menu-item { min-height: 160px; padding: 15px 10px; border-radius: 10px;}
+    .icon-container { width: 60px; height: 60px; margin-bottom: 10px; }
+}
+
+@media (max-width: 480px) {
+    body { padding: 15px; background-position: center center; /* Adjust for less cropping */}
+    .main-header { padding: 15px 20px; border-radius: 12px; }
+    .main-title { font-size: clamp(1.8rem, 8vw, 2.8rem); letter-spacing: 1px; }
+    .menu-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px; }
+    .menu-item { min-height: 140px; }
+    .icon-container { width: 50px; height: 50px; }
+    .menu-text { font-size: 0.95rem; }
+    .placeholder-icon { font-size: 35px; }
+}
