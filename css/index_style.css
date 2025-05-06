@@ -30,7 +30,7 @@ body {
     font-family: 'Montserrat', 'Exo 2', sans-serif;
     font-weight: 700; /* Bolder default for this style */
     /* MODIFIED: New background SVG */
-    background-image: url('track_field_background.svg');
+    background-image: url('/images/track_field_background.svg');
     background-color: var(--bg-color); /* Fallback */
     background-size: cover;
     background-position: center center; /* Show more of the track */
